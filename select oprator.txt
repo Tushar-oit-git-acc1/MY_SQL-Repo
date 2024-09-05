@@ -1,0 +1,130 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use stud_demo;
+Database changed
+mysql> select * from students;
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name               | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke      |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  2 | Sai Patil          |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer         | 20878623 | good        |
+|  3 | Prathmesh Kulkarni |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh      |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge     |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where age > 22;
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name               | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  3 | Prathmesh Kulkarni |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh      |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge     |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+--------------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where performance='exellent';
++----+----------------+------+----------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                      | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+----------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com  | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+----------------------------+-----------------+--------+-----------------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where age > 22 and performance='better';
++----+--------------------+------+--------------------------------+-----------------+--------+------------+----------+-------------+
+| id | name               | age  | email                          | enrollment_date | salary | degination | phone_no | performance |
++----+--------------------+------+--------------------------------+-----------------+--------+------------+----------+-------------+
+|  3 | Prathmesh Kulkarni |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe    | 20878623 | better      |
++----+--------------------+------+--------------------------------+-----------------+--------+------------+----------+-------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> update from students
+    -> set name='prathmesh raut'
+    -> where id=3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from students
+set name='prathmesh raut'
+where id=3' at line 1
+mysql> update students
+    -> set name='prathmesh raut'
+    -> where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer         | 20878623 | good        |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where age > 22 or salary >= 25000;
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * students
+    -> where age between 22 and 30;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'students
+where age between 22 and 30' at line 1
+mysql> select * from students
+    -> where age between 22 and 30;
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer         | 20878623 | good        |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where degination in ('ceo' , 'officer');
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+
+| id | name          | age  | email                     | enrollment_date | salary | degination | phone_no | performance |
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+
+|  2 | Sai Patil     |   22 | sai.patil@example.com     | 2022-09-01      | 12000  | officer    | 20878623 | good        |
+|  4 | Soma Deshmukh |   24 | soma.deshmukh@example.com | 2022-09-01      | 30000  | ceo        | 20878623 | nice        |
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where degination not in ('officer', 'ceo');
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+3 rows in set (0.00 sec)
