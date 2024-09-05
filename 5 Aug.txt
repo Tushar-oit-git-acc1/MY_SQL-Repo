@@ -1,0 +1,17 @@
+create table employee(
+id int primary key,
+name varchar(25),
+salry int not null
+);
+insert into employee
+(id,name,salry)
+values
+(1,"adam",25000),
+(2,"syam",30000),
+(3,"ram",50000);
+select* from employee;
+
+select*
+ from ts_company
+ where salry = 25000;
+ select* from ts_company;
