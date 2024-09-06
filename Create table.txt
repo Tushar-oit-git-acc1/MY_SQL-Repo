@@ -1,0 +1,549 @@
+MySQL 
+<!--First Create database-->
+
+mysql> create database stud_info;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use stud_info;
+Database changed
+mysql> create table student(roll_no int primary key, name varchar(20),address varchar(30));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+<!--Insert data into table-->
+
+mysql> insert into student(roll_no,name,address)values(101,'Ram','satara');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student;
++---------+------+---------+
+| roll_no | name | address |
++---------+------+---------+
+|     101 | Ram  | satara  |
++---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into student(roll_no,name,address)values(102,'sham','Pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(roll_no,name,address)values(103,'Anuj','Thane');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student;
++---------+------+---------+
+| roll_no | name | address |
++---------+------+---------+
+|     101 | Ram  | satara  |
+|     102 | sham | Pune    |
+|     103 | Anuj | Thane   |
++---------+------+---------+
+3 rows in set (0.00 sec)
+
+<!--Alter Table-->
+1 Modify column
+
+mysql> alter table student
+    -> modify column address varchar(50);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+2 Add column
+
+mysql> alter table student
+    -> add column email varchar(40);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student
+    -> add column mobile_no int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student
+    -> add column state varchar(20);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| roll_no   | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
+| email     | varchar(40) | YES  |     | NULL    |       |
+| mobile_no | int         | YES  |     | NULL    |       |
+| state     | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+3 Drop column
+
+mysql> alter table student
+    -> drop column mobile_no;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(50) | YES  |     | NULL    |       |
+| email   | varchar(40) | YES  |     | NULL    |       |
+| state   | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+4 Rename Column
+
+mysql> alter table student
+    -> change column roll_no stud_id int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student
+    -> change column name stud_name varchar(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| stud_id   | int         | NO   | PRI | NULL    |       |
+| stud_name | varchar(30) | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
+| email     | varchar(40) | YES  |     | NULL    |       |
+| state     | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+***CONSTRAINTS***
+
+mysql>  create table persons(id int not null,Lastname varchar(255) not null,firstname varchar(255) not null,age int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc persons;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| Lastname  | varchar(255) | NO   |     | NULL    |       |
+| firstname | varchar(255) | NO   |     | NULL    |       |
+| age       | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table persons
+    -> modify column age int not null;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc persons;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| Lastname  | varchar(255) | NO   |     | NULL    |       |
+| firstname | varchar(255) | NO   |     | NULL    |       |
+| age       | int          | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table persons
+    -> add column address varchar(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc persons;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| Lastname  | varchar(255) | NO   |     | NULL    |       |
+| firstname | varchar(255) | NO   |     | NULL    |       |
+| age       | int          | NO   |     | NULL    |       |
+| address   | varchar(30)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table persons
+    -> add column mobileno int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc persons;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| Lastname  | varchar(255) | NO   |     | NULL    |       |
+| firstname | varchar(255) | NO   |     | NULL    |       |
+| age       | int          | NO   |     | NULL    |       |
+| address   | varchar(30)  | YES  |     | NULL    |       |
+| mobileno  | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql>  alter table persons
+    ->  modify mobileno int not null;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc persons;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| Lastname  | varchar(255) | NO   |     | NULL    |       |
+| firstname | varchar(255) | NO   |     | NULL    |       |
+| age       | int          | NO   |     | NULL    |       |
+| address   | varchar(30)  | YES  |     | NULL    |       |
+| mobileno  | int          | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table students(id int,name varchar(20),standard int,age int,city varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| standard | int         | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table students
+    -> modify column name varchar(20) not null;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table students
+    -> modify column age int not null;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table students
+    -> modify column id int primary key;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table students
+    -> modify column age int check(age>=18 and age<=26);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(20) | NO   |     | NULL    |       |
+| standard | int         | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table students
+    -> modify column standard varchar(10) not null;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(20) | NO   |     | NULL    |       |
+| standard | varchar(10) | NO   |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into students(id,name,standard,age,city)values(101,'aryan','sy',23,'satara');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(20) | NO   |     | NULL    |       |
+| standard | varchar(10) | NO   |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select*from students;
++-----+-------+----------+------+--------+
+| id  | name  | standard | age  | city   |
++-----+-------+----------+------+--------+
+| 101 | aryan | sy       |   23 | satara |
++-----+-------+----------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into students(id,name,standard,age,city)values(101,'aryan','ty',34,'pune');
+ERROR 3819 (HY000): Check constraint 'students_chk_1' is violated.
+mysql>
+
+
+
+***DATA MANIPULATION LANGUAGE****
+
+
+
+mysql> create database emp;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use emp;
+Database changed
+mysql> create table empl(eno int primary key,ename varchar(20),designation varchar(20),salry float,date_of_joining varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc empl;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| eno             | int         | NO   | PRI | NULL    |       |
+| ename           | varchar(20) | YES  |     | NULL    |       |
+| designation     | varchar(20) | YES  |     | NULL    |       |
+| salry           | float       | YES  |     | NULL    |       |
+| date_of_joining | varchar(20) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into empl(eno,ename,designation,salry,date_of_joining)values(1,'Mr.Advait','Assistant',54000,'23/03/2002');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into empl(eno,ename,designation,salry,date_of_joining)values(4,'Mr.Raghav','manager',42000,'o1/03/2003');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from empl;
++-----+-----------+-------------+-------+-----------------+
+| eno | ename     | designation | salry | date_of_joining |
++-----+-----------+-------------+-------+-----------------+
+|   1 | Mr.Advait | Assistant   | 54000 | 23/03/2002      |
+|   4 | Mr.Raghav | manager     | 42000 | o1/03/2003      |
++-----+-----------+-------------+-------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table empl
+    -> add column email varchar(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc empl;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| eno             | int         | NO   | PRI | NULL    |       |
+| ename           | varchar(20) | YES  |     | NULL    |       |
+| designation     | varchar(20) | YES  |     | NULL    |       |
+| salry           | float       | YES  |     | NULL    |       |
+| date_of_joining | varchar(20) | YES  |     | NULL    |       |
+| email           | varchar(30) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> update empl
+    -> set email='mradvait@gmail.com'
+    -> where eno=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+-------------+-------+-----------------+--------------------+
+| eno | ename     | designation | salry | date_of_joining | email              |
++-----+-----------+-------------+-------+-----------------+--------------------+
+|   1 | Mr.Advait | Assistant   | 54000 | 23/03/2002      | mradvait@gmail.com |
+|   4 | Mr.Raghav | manager     | 42000 | o1/03/2003      | NULL               |
++-----+-----------+-------------+-------+-----------------+--------------------+
+2 rows in set (0.00 sec)
+
+
+mysql> update empl
+    -> set salry=salry+(salry*0.05);
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+-------------+-------+-----------------+--------------------+
+| eno | ename     | designation | salry | date_of_joining | email              |
++-----+-----------+-------------+-------+-----------------+--------------------+
+|   1 | Mr.Advait | Assistant   | 56700 | 23/03/2002      | mradvait@gmail.com |
+|   4 | Mr.Raghav | manager     | 44100 | o1/03/2003      | NULL               |
++-----+-----------+-------------+-------+-----------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> update empl
+    -> set designation='sr.manager'
+    ->  where ename='Mr.Raghav';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+-------------+-------+-----------------+--------------------+
+| eno | ename     | designation | salry | date_of_joining | email              |
++-----+-----------+-------------+-------+-----------------+--------------------+
+|   1 | Mr.Advait | Assistant   | 56700 | 23/03/2002      | mradvait@gmail.com |
+|   4 | Mr.Raghav | sr.manager  | 44100 | o1/03/2003      | NULL               |
++-----+-----------+-------------+-------+-----------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> update empl
+    ->  set designation='sr.Assistant'
+    ->  where ename='Mr.Advait';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> desc empl;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| eno             | int         | NO   | PRI | NULL    |       |
+| ename           | varchar(20) | YES  |     | NULL    |       |
+| designation     | varchar(20) | YES  |     | NULL    |       |
+| salry           | float       | YES  |     | NULL    |       |
+| date_of_joining | varchar(20) | YES  |     | NULL    |       |
+| email           | varchar(30) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+
+| eno | ename     | designation  | salry | date_of_joining | email              |
++-----+-----------+--------------+-------+-----------------+--------------------+
+|   1 | Mr.Advait | sr.Assistant | 56700 | 23/03/2002      | mradvait@gmail.com |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               |
++-----+-----------+--------------+-------+-----------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table empl
+    -> add column city varchar(20);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city |
++-----+-----------+--------------+-------+-----------------+--------------------+------+
+|   1 | Mr.Advait | sr.Assistant | 56700 | 23/03/2002      | mradvait@gmail.com | NULL |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL |
++-----+-----------+--------------+-------+-----------------+--------------------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> update empl
+    -> set city='mumbai'
+    -> where ename='Mr.Advait';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+|   1 | Mr.Advait | sr.Assistant | 56700 | 23/03/2002      | mradvait@gmail.com | mumbai |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> update empl
+    -> set salry=salry-(salry*0.05)
+    -> where designation='ceo' and city='pune';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+|   1 | Mr.Advait | sr.Assistant | 56700 | 23/03/2002      | mradvait@gmail.com | mumbai |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> update empl
+    -> set salry=salry-(salry*0.05)
+    -> where designation='sr.Assistant' and city='mumbai';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+|   1 | Mr.Advait | sr.Assistant | 53865 | 23/03/2002      | mradvait@gmail.com | mumbai |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL   |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> alter table empl
+    -> add column phone_no int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into empl(eno,ename,designation,salry,date_of_joining,email,city)values(5,'Mr.Roy','manager',42000,'15/06/2019','roy@gmail.com','mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city   | phone_no |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+|   1 | Mr.Advait | sr.Assistant | 53865 | 23/03/2002      | mradvait@gmail.com | mumbai |     NULL |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL   |     NULL |
+|   5 | Mr.Roy    | manager      | 42000 | 15/06/2019      | roy@gmail.com      | mumbai |     NULL |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update empl
+    -> set date_of_joining='22/06/2009'
+    -> where eno=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from empl;
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+| eno | ename     | designation  | salry | date_of_joining | email              | city   | phone_no |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+|   1 | Mr.Advait | sr.Assistant | 53865 | 23/03/2002      | mradvait@gmail.com | mumbai |     NULL |
+|   4 | Mr.Raghav | sr.manager   | 44100 | o1/03/2003      | NULL               | NULL   |     NULL |
+|   5 | Mr.Roy    | manager      | 42000 | 22/06/2009      | roy@gmail.com      | mumbai |     NULL |
++-----+-----------+--------------+-------+-----------------+--------------------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
+
