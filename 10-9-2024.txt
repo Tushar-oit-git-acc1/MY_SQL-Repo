@@ -1,0 +1,295 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| stud_demo          |
+| student            |
+| sys                |
+| ts_company         |
+| world              |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> use ts_company;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_ts_company |
++----------------------+
+| employee             |
+| ts                   |
++----------------------+
+2 rows in set (0.01 sec)
+
+mysql> use stud_demo;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_stud_demo |
++---------------------+
+| student             |
+| students            |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students;
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination      | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager | 20878623 | exellent    |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer         | 20878623 | good        |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe         | 20878623 | better      |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo             | 20878623 | nice        |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee | 20878623 | exellent    |
++----+----------------+------+--------------------------------+-----------------+--------+-----------------+----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO students (id, name, age, email, enrollment_date, salary, degination, phone_no, performance)
+    -> VALUES
+    -> (6, 'Amit Kumar', 26, 'amit.kumar@example.com', '2022-09-01', 28000, 'assistant_manager', '20878623', 'good'),
+    -> (7, 'Rohan Desai', 27, 'rohan.desai@example.com', '2022-09-01', 35000, 'general_manager', '20878623', 'excellent'),
+    -> (8, 'Mona Shinde', 24, 'mona.shinde@example.com', '2022-09-01', 32000, 'manager', '20878623', 'better'),
+    -> (9, 'Rajesh Gupta', 29, 'rajesh.gupta@example.com', '2022-09-01', 36000, 'ceo', '20878623', 'excellent'),
+    -> (10, 'Neha Pandey', 28, 'neha.pandey@example.com', '2022-09-01', 31000, 'officer', '20878623', 'nice'),
+    -> (11, 'Vikas Kharat', 22, 'vikas.kharat@example.com', '2022-09-01', 12000, 'junior_employee', '20878623', 'good'),
+    -> (12, 'Snehal Joshi', 23, 'snehal.joshi@example.com', '2022-09-01', 18000, 'assistant_manager', '20878623', 'better'),
+    -> (13, 'Ritika Mehta', 30, 'ritika.mehta@example.com', '2022-09-01', 40000, 'ceo', '20878623', 'excellent'),
+    -> (14, 'Vivek Patil', 31, 'vivek.patil@example.com', '2022-09-01', 28000, 'manager', '20878623', 'good'),
+    -> (15, 'Kiran Gaikwad', 25, 'kiran.gaikwad@example.com', '2022-09-01', 34000, 'senior_employee', '20878623', 'excellent');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination        | phone_no | performance |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager   | 20878623 | exellent    |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer           | 20878623 | good        |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe           | 20878623 | better      |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo               | 20878623 | nice        |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee   | 20878623 | exellent    |
+|  6 | Amit Kumar     |   26 | amit.kumar@example.com         | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        |
+|  7 | Rohan Desai    |   27 | rohan.desai@example.com        | 2022-09-01      | 35000  | general_manager   | 20878623 | excellent   |
+|  8 | Mona Shinde    |   24 | mona.shinde@example.com        | 2022-09-01      | 32000  | manager           | 20878623 | better      |
+|  9 | Rajesh Gupta   |   29 | rajesh.gupta@example.com       | 2022-09-01      | 36000  | ceo               | 20878623 | excellent   |
+| 10 | Neha Pandey    |   28 | neha.pandey@example.com        | 2022-09-01      | 31000  | officer           | 20878623 | nice        |
+| 11 | Vikas Kharat   |   22 | vikas.kharat@example.com       | 2022-09-01      | 12000  | junior_employee   | 20878623 | good        |
+| 12 | Snehal Joshi   |   23 | snehal.joshi@example.com       | 2022-09-01      | 18000  | assistant_manager | 20878623 | better      |
+| 13 | Ritika Mehta   |   30 | ritika.mehta@example.com       | 2022-09-01      | 40000  | ceo               | 20878623 | excellent   |
+| 14 | Vivek Patil    |   31 | vivek.patil@example.com        | 2022-09-01      | 28000  | manager           | 20878623 | good        |
+| 15 | Kiran Gaikwad  |   25 | kiran.gaikwad@example.com      | 2022-09-01      | 34000  | senior_employee   | 20878623 | excellent   |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+
+15 rows in set (0.00 sec)
+
+mysql> desc students;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| id              | int          | NO   | PRI | NULL    | auto_increment |
+| name            | varchar(100) | NO   |     | NULL    |                |
+| age             | int          | YES  |     | NULL    |                |
+| email           | varchar(100) | YES  | UNI | NULL    |                |
+| enrollment_date | date         | YES  |     | NULL    |                |
+| salary          | varchar(30)  | YES  |     | NULL    |                |
+| degination      | varchar(30)  | YES  |     | NULL    |                |
+| phone_no        | int          | YES  |     | NULL    |                |
+| performance     | varchar(50)  | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> ALTER TABLE students
+    -> ADD COLUMN city VARCHAR(50),
+    -> ADD COLUMN phone_no VARCHAR(15);
+ERROR 1060 (42S21): Duplicate column name 'phone_no'
+mysql> ALTER TABLE students
+    -> ADD COLUMN city VARCHAR(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE students
+    -> SET city = CASE
+    ->     WHEN id = 1 THEN 'Pune'
+    ->     WHEN id = 2 THEN 'Mumbai'
+    ->     WHEN id = 3 THEN 'Nagpur'
+    ->     WHEN id = 4 THEN 'Nashik'
+    ->     WHEN id = 5 THEN 'Kolhapur'
+    ->     WHEN id = 6 THEN 'Pune'
+    ->     WHEN id = 7 THEN 'Delhi'
+    ->     WHEN id = 8 THEN 'Ahmedabad'
+    ->     WHEN id = 9 THEN 'Bangalore'
+    ->     WHEN id = 10 THEN 'Hyderabad'
+    ->     WHEN id = 11 THEN 'Jaipur'
+    ->     WHEN id = 12 THEN 'Chandigarh'
+    ->     WHEN id = 13 THEN 'Kolkata'
+    ->     WHEN id = 14 THEN 'Lucknow'
+    ->     WHEN id = 15 THEN 'Chennai'
+    ->     ELSE 'Unknown'
+    -> END;
+Query OK, 15 rows affected (0.00 sec)
+Rows matched: 15  Changed: 15  Warnings: 0
+
+mysql> select * from students;
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination        | phone_no | performance | city       |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager   | 20878623 | exellent    | Pune       |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer           | 20878623 | good        | Mumbai     |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe           | 20878623 | better      | Nagpur     |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo               | 20878623 | nice        | Nashik     |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee   | 20878623 | exellent    | Kolhapur   |
+|  6 | Amit Kumar     |   26 | amit.kumar@example.com         | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune       |
+|  7 | Rohan Desai    |   27 | rohan.desai@example.com        | 2022-09-01      | 35000  | general_manager   | 20878623 | excellent   | Delhi      |
+|  8 | Mona Shinde    |   24 | mona.shinde@example.com        | 2022-09-01      | 32000  | manager           | 20878623 | better      | Ahmedabad  |
+|  9 | Rajesh Gupta   |   29 | rajesh.gupta@example.com       | 2022-09-01      | 36000  | ceo               | 20878623 | excellent   | Bangalore  |
+| 10 | Neha Pandey    |   28 | neha.pandey@example.com        | 2022-09-01      | 31000  | officer           | 20878623 | nice        | Hyderabad  |
+| 11 | Vikas Kharat   |   22 | vikas.kharat@example.com       | 2022-09-01      | 12000  | junior_employee   | 20878623 | good        | Jaipur     |
+| 12 | Snehal Joshi   |   23 | snehal.joshi@example.com       | 2022-09-01      | 18000  | assistant_manager | 20878623 | better      | Chandigarh |
+| 13 | Ritika Mehta   |   30 | ritika.mehta@example.com       | 2022-09-01      | 40000  | ceo               | 20878623 | excellent   | Kolkata    |
+| 14 | Vivek Patil    |   31 | vivek.patil@example.com        | 2022-09-01      | 28000  | manager           | 20878623 | good        | Lucknow    |
+| 15 | Kiran Gaikwad  |   25 | kiran.gaikwad@example.com      | 2022-09-01      | 34000  | senior_employee   | 20878623 | excellent   | Chennai    |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select distinct city
+    -> from students;
++------------+
+| city       |
++------------+
+| Pune       |
+| Mumbai     |
+| Nagpur     |
+| Nashik     |
+| Kolhapur   |
+| Delhi      |
+| Ahmedabad  |
+| Bangalore  |
+| Hyderabad  |
+| Jaipur     |
+| Chandigarh |
+| Kolkata    |
+| Lucknow    |
+| Chennai    |
++------------+
+14 rows in set (0.00 sec)
+
+mysql> update students
+    -> set phone_no=9890704322
+    -> where id=1;
+ERROR 1264 (22003): Out of range value for column 'phone_no' at row 1
+mysql> update students
+    -> set phone_no=98907043
+    -> where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select students
+    -> from salary
+    -> where ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> select from
+    -> students where
+    -> salary between 50000 and 800000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from
+students where
+salary between 50000 and 800000' at line 1
+mysql> select from
+    -> students where
+    -> salary= between 50000 and 800000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from
+students where
+salary= between 50000 and 800000' at line 1
+mysql> select from students
+    -> where performance in (exellent,better, good);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from students
+where performance in (exellent,better, good)' at line 1
+mysql> select * from students
+    -> where performance in (exellent,better, good);
+ERROR 1054 (42S22): Unknown column 'exellent' in 'where clause'
+mysql> select from students
+    -> where performance in (better, good);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from students
+where performance in (better, good)' at line 1
+mysql> select * from students
+    -> where performance in (good,nice);
+ERROR 1054 (42S22): Unknown column 'good' in 'where clause'
+mysql> select * from students
+    -> where performance in ('good','nice');
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+| id | name          | age  | email                     | enrollment_date | salary | degination        | phone_no | performance | city      |
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+|  2 | Sai Patil     |   22 | sai.patil@example.com     | 2022-09-01      | 12000  | officer           | 20878623 | good        | Mumbai    |
+|  4 | Soma Deshmukh |   24 | soma.deshmukh@example.com | 2022-09-01      | 30000  | ceo               | 20878623 | nice        | Nashik    |
+|  6 | Amit Kumar    |   26 | amit.kumar@example.com    | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune      |
+| 10 | Neha Pandey   |   28 | neha.pandey@example.com   | 2022-09-01      | 31000  | officer           | 20878623 | nice        | Hyderabad |
+| 11 | Vikas Kharat  |   22 | vikas.kharat@example.com  | 2022-09-01      | 12000  | junior_employee   | 20878623 | good        | Jaipur    |
+| 14 | Vivek Patil   |   31 | vivek.patil@example.com   | 2022-09-01      | 28000  | manager           | 20878623 | good        | Lucknow   |
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * students
+    -> where salary between 10000 and 30000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'students
+where salary between 10000 and 30000' at line 1
+mysql> select * from students
+    -> where salary between 10000 and 30000;
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination        | phone_no | performance | city       |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager   | 98907043 | exellent    | Pune       |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer           | 20878623 | good        | Mumbai     |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe           | 20878623 | better      | Nagpur     |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo               | 20878623 | nice        | Nashik     |
+|  6 | Amit Kumar     |   26 | amit.kumar@example.com         | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune       |
+| 11 | Vikas Kharat   |   22 | vikas.kharat@example.com       | 2022-09-01      | 12000  | junior_employee   | 20878623 | good        | Jaipur     |
+| 12 | Snehal Joshi   |   23 | snehal.joshi@example.com       | 2022-09-01      | 18000  | assistant_manager | 20878623 | better      | Chandigarh |
+| 14 | Vivek Patil    |   31 | vivek.patil@example.com        | 2022-09-01      | 28000  | manager           | 20878623 | good        | Lucknow    |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+----------+-------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from students
+    -> where age between 25 and 30;
++----+----------------+------+----------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+| id | name           | age  | email                      | enrollment_date | salary | degination        | phone_no | performance | city      |
++----+----------------+------+----------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com | 2022-09-01      | 33000  | senior_employee   | 20878623 | exellent    | Kolhapur  |
+|  6 | Amit Kumar     |   26 | amit.kumar@example.com     | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune      |
+|  7 | Rohan Desai    |   27 | rohan.desai@example.com    | 2022-09-01      | 35000  | general_manager   | 20878623 | excellent   | Delhi     |
+|  9 | Rajesh Gupta   |   29 | rajesh.gupta@example.com   | 2022-09-01      | 36000  | ceo               | 20878623 | excellent   | Bangalore |
+| 10 | Neha Pandey    |   28 | neha.pandey@example.com    | 2022-09-01      | 31000  | officer           | 20878623 | nice        | Hyderabad |
+| 13 | Ritika Mehta   |   30 | ritika.mehta@example.com   | 2022-09-01      | 40000  | ceo               | 20878623 | excellent   | Kolkata   |
+| 15 | Kiran Gaikwad  |   25 | kiran.gaikwad@example.com  | 2022-09-01      | 34000  | senior_employee   | 20878623 | excellent   | Chennai   |
++----+----------------+------+----------------------------+-----------------+--------+-------------------+----------+-------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select from students
+    -> where city='pune'
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from students
+where city='pune'' at line 1
+mysql> select * from students
+    -> where city='pune';
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+------+
+| id | name          | age  | email                     | enrollment_date | salary | degination        | phone_no | performance | city |
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+------+
+|  1 | Tushar Shelke |   21 | tushar.shelke@example.com | 2022-09-01      | 25000  | general_manager   | 98907043 | exellent    | Pune |
+|  6 | Amit Kumar    |   26 | amit.kumar@example.com    | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune |
++----+---------------+------+---------------------------+-----------------+--------+-------------------+----------+-------------+------+
+2 rows in set (0.00 sec)
