@@ -1,0 +1,221 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| stud_demo          |
+| ts_company         |
+| world              |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> use stud_demo;
+Database changed
+mysql> select * from emp;
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination        | phone_no  | performance | city       |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager   |  98907043 | exellent    | Sangli     |
+|  2 | Sai Patil      |   22 | sai.patil@example.com          | 2022-09-01      | 12000  | officer           | 980734231 | good        | Mumbai     |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe           | 980734599 | better      | Nagpur     |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo               |  20878623 | nice        | Nashik     |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee   |  20878623 | exellent    | Kolhapur   |
+|  6 | Amit Kumar     |   26 | amit.kumar@example.com         | 2022-09-01      | 28000  | assistant_manager |  20878623 | good        | Pune       |
+|  7 | Rohan Desai    |   27 | rohan.desai@example.com        | 2022-09-01      | 35000  | general_manager   |  20878623 | excellent   | Delhi      |
+|  8 | Mona Shinde    |   24 | mona.shinde@example.com        | 2022-09-01      | 32000  | manager           |  20878623 | better      | Ahmedabad  |
+|  9 | Rajesh Gupta   |   29 | rajesh.gupta@example.com       | 2022-09-01      | 36000  | ceo               |  20878623 | excellent   | Bangalore  |
+| 10 | Neha Pandey    |   28 | neha.pandey@example.com        | 2022-09-01      | 31000  | officer           |  20878623 | nice        | Hyderabad  |
+| 11 | Vikas Kharat   |   22 | vikas.kharat@example.com       | 2022-09-01      | 12000  | junior_employee   |  20878623 | good        | Jaipur     |
+| 12 | Snehal Joshi   |   23 | snehal.joshi@example.com       | 2022-09-01      | 18000  | assistant_manager |  20878623 | better      | Chandigarh |
+| 13 | Ritika Mehta   |   30 | ritika.mehta@example.com       | 2022-09-01      | 40000  | ceo               |  20878623 | excellent   | Kolkata    |
+| 14 | Vivek Patil    |   31 | vivek.patil@example.com        | 2022-09-01      | 28000  | manager           |  20878623 | good        | Lucknow    |
+| 15 | Kiran Gaikwad  |   25 | kiran.gaikwad@example.com      | 2022-09-01      | 34000  | senior_employee   |  20878623 | excellent   | Chennai    |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from emp
+    -> where city like 'p%';
++----+------------+------+------------------------+-----------------+--------+-------------------+----------+-------------+------+
+| id | name       | age  | email                  | enrollment_date | salary | degination        | phone_no | performance | city |
++----+------------+------+------------------------+-----------------+--------+-------------------+----------+-------------+------+
+|  6 | Amit Kumar |   26 | amit.kumar@example.com | 2022-09-01      | 28000  | assistant_manager | 20878623 | good        | Pune |
++----+------------+------+------------------------+-----------------+--------+-------------------+----------+-------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp
+    -> where city like '%sh%';
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+--------+
+| id | name          | age  | email                     | enrollment_date | salary | degination | phone_no | performance | city   |
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+--------+
+|  4 | Soma Deshmukh |   24 | soma.deshmukh@example.com | 2022-09-01      | 30000  | ceo        | 20878623 | nice        | Nashik |
++----+---------------+------+---------------------------+-----------------+--------+------------+----------+-------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp
+    -> where name like '%sh%';
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+| id | name           | age  | email                          | enrollment_date | salary | degination        | phone_no  | performance | city       |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+|  1 | Tushar Shelke  |   21 | tushar.shelke@example.com      | 2022-09-01      | 25000  | general_manager   |  98907043 | exellent    | Sangli     |
+|  3 | prathmesh raut |   23 | prathmesh.kulkarni@example.com | 2022-09-01      | 25000  | employe           | 980734599 | better      | Nagpur     |
+|  4 | Soma Deshmukh  |   24 | soma.deshmukh@example.com      | 2022-09-01      | 30000  | ceo               |  20878623 | nice        | Nashik     |
+|  5 | Shubham Ghadge |   25 | shubham.ghadge@example.com     | 2022-09-01      | 33000  | senior_employee   |  20878623 | exellent    | Kolhapur   |
+|  8 | Mona Shinde    |   24 | mona.shinde@example.com        | 2022-09-01      | 32000  | manager           |  20878623 | better      | Ahmedabad  |
+|  9 | Rajesh Gupta   |   29 | rajesh.gupta@example.com       | 2022-09-01      | 36000  | ceo               |  20878623 | excellent   | Bangalore  |
+| 12 | Snehal Joshi   |   23 | snehal.joshi@example.com       | 2022-09-01      | 18000  | assistant_manager |  20878623 | better      | Chandigarh |
++----+----------------+------+--------------------------------+-----------------+--------+-------------------+-----------+-------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp
+    -> where name like '%ke';
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+| id | name          | age  | email                     | enrollment_date | salary | degination      | phone_no | performance | city   |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+|  1 | Tushar Shelke |   21 | tushar.shelke@example.com | 2022-09-01      | 25000  | general_manager | 98907043 | exellent    | Sangli |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp
+    -> where name like 's%h'
+    -> where degination='ceo' and city=('pune','mumbai');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where degination='ceo' and city=('pune','mumbai')' at line 3
+mysql> select * from emp
+    -> where name like 's%h',
+    -> where degination='ceo' and city=('pune','mumbai');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+where degination='ceo' and city=('pune','mumbai')' at line 2
+mysql> select *  from emp
+    -> where name like 't%e'
+    -> and degination='ceo'
+    -> and city in ('pune','mumbai');
+Empty set (0.00 sec)
+
+mysql> select *  from emp
+    -> where name like 'm%e'
+    -> and city in ('pune','mumbai');
+Empty set (0.00 sec)
+
+mysql> select *  from emp
+    -> where name like 't%e'
+    -> and city in ('pune','Sanagli');
+Empty set (0.00 sec)
+
+mysql> select *  from emp
+    -> where name like 't%e'
+    -> and city in ('pune','Sangli');
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+| id | name          | age  | email                     | enrollment_date | salary | degination      | phone_no | performance | city   |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+|  1 | Tushar Shelke |   21 | tushar.shelke@example.com | 2022-09-01      | 25000  | general_manager | 98907043 | exellent    | Sangli |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp
+    -> where email='vikas.kharat@example.com'
+    -> and salary between 100000 to 200000
+    -> or where id=1,2,3,5,6,9;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to 200000
+or where id=1,2,3,5,6,9' at line 3
+mysql> select * from emp
+    -> where email='vikas.kharat@example.com'
+    -> and where salary between 100000 to 200000
+    -> or where id=1,2,3,5,6,9;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where salary between 100000 to 200000
+or where id=1,2,3,5,6,9' at line 3
+mysql> select * from emp
+    -> where email='vikas.kharat@example.com'
+    -> and salary between 100000 to 200000
+    -> or where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to 200000
+or where id=1' at line 3
+mysql> select * from emp
+    -> where (email='vikas.kharat@example.com'
+    -> and salary between 100000 to 200000)
+    -> or id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to 200000)
+or id=1' at line 3
+mysql> select * from emp
+    -> where (email='vikas.kharat@example.com'
+    -> and salary between 100000 and 200000)
+    -> or id=1;
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+| id | name          | age  | email                     | enrollment_date | salary | degination      | phone_no | performance | city   |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+|  1 | Tushar Shelke |   21 | tushar.shelke@example.com | 2022-09-01      | 25000  | general_manager | 98907043 | exellent    | Sangli |
++----+---------------+------+---------------------------+-----------------+--------+-----------------+----------+-------------+--------+
+1 row in set (0.01 sec)
+mysql> select * from emp
+    -> where name like '_____'
+    -> order by name desc;
+Empty set (0.00 sec)
+
+mysql> select * from emp
+    -> where name like '___'
+    -> order by name desc;
+Empty set (0.00 sec)
+
+mysql> select * from emp
+    -> where name like '______'
+    -> order by name desc;
+Empty set (0.00 sec)
+
+mysql> select min(salary)
+    -> from emp;
++-------------+
+| min(salary) |
++-------------+
+| 12000       |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select min(salary) as minsalary
+    -> from emp;
++-----------+
+| minsalary |
++-----------+
+| 12000     |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary)
+    -> from emp;
++-------------+
+| max(salary) |
++-------------+
+| 40000       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary)
+    -> from emp;
++-------------+
+| sum(salary) |
++-------------+
+|      419000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(salary)
+    -> from emp;
++---------------+
+| count(salary) |
++---------------+
+|            15 |
++---------------+
+1 row in set (0.00 sec)
