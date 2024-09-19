@@ -1,0 +1,312 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alpha              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| stud_demo          |
+| ts_company         |
+| world              |
++--------------------+
+8 rows in set (0.09 sec)
+
+mysql> use alpha;
+Database changed
+mysql> create table salesman(salesman_id int primary key, name varchar(50), city varchar(50),
+    -> commission float);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into salesman(salesman_id, name, city, coommission)
+    -> values
+    -> (5001,'james hoog','new york',0.15),
+    -> (5002,'nail knite', 'paris',0.13),
+    -> (5005,'pit alex','london',0.11),
+    -> (5007,'mc lyon','paris',0.14),
+    -> (5003,'paul adam','rome',0.13),
+    -> (5008,'rose willy','san jose',0.12),
+    -> (5009,'lauson hen','rome',0.17);
+ERROR 1054 (42S22): Unknown column 'coommission' in 'field list'
+mysql> insert into salesman(salesman_id, name, city, commission)
+    -> values
+    -> (5001,'james hoog','new york',0.15),
+    -> (5002,'nail knite', 'paris',0.13),
+    -> (5005,'pit alex','london',0.11),
+    -> (5002,'nail knite', 'paris',0.13),
+    -> (5007,'mc lyon','paris',0.14),
+    -> (5003,'paul adam','rome',0.13),
+    -> (5008,'rose willy','san jose',0.12),
+    -> (5009,'lauson hen','rome',0.17);
+ERROR 1062 (23000): Duplicate entry '5002' for key 'salesman.PRIMARY'
+mysql> insert into salesman(salesman_id, name, city, coommission)
+    -> values
+    -> (5001,'james hoog','new york',0.15),
+    -> (5002,'nail knite', 'paris',0.13),
+    -> (5005,'pit alex','london',0.11),
+    -> (5007,'mc lyon','paris',0.14),
+    -> (5003,'paul adam','rome',0.13),
+    -> (5008,'rose willy','san jose',0.12),
+    -> (5009,'lauson hen','rome',0.17);
+ERROR 1054 (42S22): Unknown column 'coommission' in 'field list'
+mysql> insert into salesman(salesman_id, name, city, commission)
+    -> values
+    -> (5001,'james hoog','new york',0.15),
+    -> (5002,'nail knite', 'paris',0.13),
+    -> (5005,'pit alex','london',0.11),
+    -> (5007,'mc lyon','paris',0.14),
+    -> (5003,'paul adam','rome',0.13),
+    -> (5008,'rose willy','san jose',0.12),
+    -> (5009,'lauson hen','rome',0.17);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from salesman;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5001 | james hoog | new york |       0.15 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5005 | pit alex   | london   |       0.11 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5008 | rose willy | san jose |       0.12 |
+|        5009 | lauson hen | rome     |       0.17 |
++-------------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select name, commission from salesman;
++------------+------------+
+| name       | commission |
++------------+------------+
+| james hoog |       0.15 |
+| nail knite |       0.13 |
+| paul adam  |       0.13 |
+| pit alex   |       0.11 |
+| mc lyon    |       0.14 |
+| rose willy |       0.12 |
+| lauson hen |       0.17 |
++------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select name, city
+    -> from salesman
+    -> where city='paris';
++------------+-------+
+| name       | city  |
++------------+-------+
+| nail knite | paris |
+| mc lyon    | paris |
++------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select name, commission
+    -> from salesman
+    -> where city='san jose';
++------------+------------+
+| name       | commission |
++------------+------------+
+| rose willy |       0.12 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select salesman_id, name, city from salesman;
++-------------+------------+----------+
+| salesman_id | name       | city     |
++-------------+------------+----------+
+|        5001 | james hoog | new york |
+|        5002 | nail knite | paris    |
+|        5003 | paul adam  | rome     |
+|        5005 | pit alex   | london   |
+|        5007 | mc lyon    | paris    |
+|        5008 | rose willy | san jose |
+|        5009 | lauson hen | rome     |
++-------------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> order by city asc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5005 | pit alex   | london   |       0.11 |
+|        5001 | james hoog | new york |       0.15 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5009 | lauson hen | rome     |       0.17 |
+|        5008 | rose willy | san jose |       0.12 |
++-------------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> order by name asc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5001 | james hoog | new york |       0.15 |
+|        5009 | lauson hen | rome     |       0.17 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5005 | pit alex   | london   |       0.11 |
+|        5008 | rose willy | san jose |       0.12 |
++-------------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select salesman_id from salesman
+    -> order by salesman_id asc;
++-------------+
+| salesman_id |
++-------------+
+|        5001 |
+|        5002 |
+|        5003 |
+|        5005 |
+|        5007 |
+|        5008 |
+|        5009 |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> order by salesman_id desc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5009 | lauson hen | rome     |       0.17 |
+|        5008 | rose willy | san jose |       0.12 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5005 | pit alex   | london   |       0.11 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5001 | james hoog | new york |       0.15 |
++-------------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> city in ('san jose','paris')
+    -> and order by salesman_id asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in ('san jose','paris')
+and order by salesman_id asc' at line 2
+mysql> select * from salesman
+    -> where city in ('san jose','paris')
+    -> and order by salesman_id asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by salesman_id asc' at line 3
+mysql> select * from salesman
+    -> where city in ('san jose','paris')
+    -> order by salesman_id asc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5002 | nail knite | paris    |       0.13 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5008 | rose willy | san jose |       0.12 |
++-------------+------------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> where city in ('rome' or 'london')
+    -> order by salesman_id asc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5001 | james hoog | new york |       0.15 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5005 | pit alex   | london   |       0.11 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5008 | rose willy | san jose |       0.12 |
+|        5009 | lauson hen | rome     |       0.17 |
++-------------+------------+----------+------------+
+7 rows in set, 9 warnings (0.00 sec)
+
+mysql> select city from salesman
+    -> where city in('new york' or 'london')
+    -> oreder by city asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'oreder by city asc' at line 3
+mysql> select city from salesman
+    -> where city in('new york' or 'london')
+    -> order by city asc;
++----------+
+| city     |
++----------+
+| london   |
+| new york |
+| paris    |
+| paris    |
+| rome     |
+| rome     |
+| san jose |
++----------+
+7 rows in set, 9 warnings (0.00 sec)
+
+mysql> select * from salesman
+    -> where name in ('james hoog','paul adam')
+    ->
+    -> order by commission asc;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5003 | paul adam  | rome     |       0.13 |
+|        5001 | james hoog | new york |       0.15 |
++-------------+------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select name, commission, city
+    -> from salesman
+    -> having commision=0.13;
+ERROR 1054 (42S22): Unknown column 'commision' in 'having clause'
+mysql> select name, commission, city
+    -> from salesman
+    -> having commission=0.13;
+Empty set (0.00 sec)
+
+mysql> select name, commission, city
+    -> from salesman
+    -> having commission > 0.12;
++------------+------------+----------+
+| name       | commission | city     |
++------------+------------+----------+
+| james hoog |       0.15 | new york |
+| nail knite |       0.13 | paris    |
+| paul adam  |       0.13 | rome     |
+| mc lyon    |       0.14 | paris    |
+| lauson hen |       0.17 | rome     |
++------------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> having commission > 0.12;
++-------------+------------+----------+------------+
+| salesman_id | name       | city     | commission |
++-------------+------------+----------+------------+
+|        5001 | james hoog | new york |       0.15 |
+|        5002 | nail knite | paris    |       0.13 |
+|        5003 | paul adam  | rome     |       0.13 |
+|        5007 | mc lyon    | paris    |       0.14 |
+|        5009 | lauson hen | rome     |       0.17 |
++-------------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from salesman
+    -> where city is NULL;
+Empty set (0.00 sec)
+
+mysql> select * from salesman
+    -> where commission is NULL;
+Empty set (0.00 sec)
